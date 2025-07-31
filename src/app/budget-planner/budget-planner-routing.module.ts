@@ -10,6 +10,7 @@ import { HistoryComponent } from './history/history.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'side-nav', component: SideNavComponent },
   { path: 'dashboard', component: DashboardComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'todo', component: TodoComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({
