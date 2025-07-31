@@ -20,7 +20,7 @@ export class DashboardComponent {
   lastMonthsExpense = ['January: ₹800', 'February: ₹1000', 'March: ₹1200'];
   currentMonthExpense = '₹1500';
  
-  //Todo Trans
+  //Todo Transactions
   todoTransactions = [
     { description: 'Pay electricity bill' },
     { description: 'Submit monthly report' },
