@@ -1,16 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-income',
-  imports: [FormsModule,ReactiveFormsModule,CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './income.component.html',
-  styleUrl: './income.component.scss'
+  styleUrl: './income.component.scss',
 })
-export class IncomeComponent {
-
+export class IncomeComponent implements OnInit {
   incomeForm: any;
   selectedMonth: any;
   januaryIncomes: any[] = [
@@ -26,23 +30,25 @@ export class IncomeComponent {
     { source: 'Freelancing', amount: 1200, investments: 'Stocks' },
     { source: 'Rental Income', amount: 600, investments: 'Real Estate' },
   ];
-  monthSelected:boolean=false;
-  constructor(public fb: FormBuilder,public router:Router) { 
+  monthSelected: boolean = false;
+  constructor(public fb: FormBuilder, public router: Router) {
     const currentDate = new Date();
-    this.selectedMonth = currentDate.toLocaleString('default', { month: 'long' });
+    this.selectedMonth = currentDate.toLocaleString('default', {
+      month: 'long',
+    });
   }
   ngOnInit(): void {
     this.incomeForm = this.fb.group({
       month: ['', Validators.required],
       source: ['', Validators.required],
       amount: ['', Validators.required],
-      investments: ['', Validators.required]
+      investments: ['', Validators.required],
     });
   }
 
   onChange(event: any) {
-    this.selectedMonth = event.target.value
-    this.monthSelected=true;
+    this.selectedMonth = event.target.value;
+    this.monthSelected = true;
     this.getFilteredIncomes();
   }
 
@@ -101,12 +107,17 @@ export class IncomeComponent {
           break;
       }
       this.incomeForm.reset();
-      this.incomeForm.patchValue({ month: '', source: '', amount: '', investments: '' });
+      this.incomeForm.patchValue({
+        month: '',
+        source: '',
+        amount: '',
+        investments: '',
+      });
     }
   }
 
   saveForm() {
-    console.log("Form saved!");
+    console.log('Form saved!');
   }
 
   onBack() {
